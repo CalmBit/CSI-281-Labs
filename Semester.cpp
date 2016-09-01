@@ -106,22 +106,44 @@ std::istream& operator>> (std::istream& stream, Semester& rhs)
 		}
 
 		// We'll put all of this information into the proper place in the students array
-		rhs.getStudentArray()[i].identifier = studentIdentifier;
-		rhs.getStudentArray()[i].studentYear = studentYear;
+		rhs.mStudentArray[i].identifier = studentIdentifier;
+		rhs.mStudentArray[i].studentYear = studentYear;
 	}
+}
+
+
+SemesterForm Semester::getSemesterForm()
+{
+	return this->mSemesterForm;
+}
+
+Student* Semester::getStudentArray()
+{
+	return this->mStudentArray;
+}
+
+size_t Semester::getStudentCount()
+{
+	return this->mStudentCount;
+}
+
+std::string Semester::getYear()
+{
+	return this->mYear;
 }
 
 /*
 *		 Pre:	Semester object filled with Student objects, and an identifier to search for
 *		Post:	Returned value states whether or not the queried identifier exists within the
 *				Semester object.
-*	 Purpose:	Load semester data from stream and fill empty Semester object with said data.
+*	 Purpose:	Find an identifier within the calling semester
 */
 bool Semester::searchForStudentIdentifier(std::string identifier)
 {
+	Student* studentArray = this->getStudentArray();
 	for (size_t i = 0; i < this->getStudentCount(); i++)
 	{
-		if (identifier == this->getStudentArray()[i].identifier) return true;
+		if (identifier == studentArray[i].identifier) return true;
 	}
 	return false;
 }

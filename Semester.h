@@ -31,10 +31,10 @@ enum SemesterForm
 class Semester
 {
 	public:
-		SemesterForm getSemesterForm() { return this->mSemesterForm; }
-		Student* getStudentArray() { return this->mStudentArray; }
-		size_t getStudentCount() { return this->mStudentCount;  }
-		std::string getYear() { return this->mYear;  }
+		SemesterForm getSemesterForm();
+		Student* getStudentArray();
+		size_t getStudentCount();
+		std::string getYear();
 		friend std::istream& operator>> (std::istream& stream, Semester& rhs);
 		bool searchForStudentIdentifier(std::string identifier);
 		Semester();
